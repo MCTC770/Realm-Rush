@@ -20,6 +20,9 @@ public class CubeEditor : MonoBehaviour
 		transform.position = new Vector3(snapPosition.x, 0f, snapPosition.z);
 
 		textMesh = GetComponentInChildren<TextMesh>();
-		textMesh.text = "X: " + snapPosition.x / gridSize + "\nZ: " + snapPosition.z / gridSize;
+		string XCoordinateLabel = "X: " + snapPosition.x / gridSize;
+		string ZCoordinateLabel = "Z: " + snapPosition.z / gridSize;
+		textMesh.text = XCoordinateLabel + "\n" + ZCoordinateLabel;
+		gameObject.name = "X:" + snapPosition.x / gridSize + ", " + "Z:" + snapPosition.z / gridSize;
 	}
 }
