@@ -1,28 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [ExecuteInEditMode]
 [SelectionBase]
+[RequireComponent(typeof(Waypoint))]
 public class CubeEditor : MonoBehaviour
 {
-	[Tooltip ("The size of a tile in the grid")][Range(1f, 20f)][SerializeField] float gridSize = 10.0f;
-
 	TextMesh textMesh;
+	Waypoint waypoint;
+	Vector3 gridPos;
+	int gridSize;
+
+	private void Awake()
+	{
+		waypoint = GetComponent<Waypoint>();
+		gridSize = waypoint.GetGridSize();
+	}
 
 	void Update()
 	{
-		Vector3 snapPosition;
+		SnapToGrid();
+		UpdateLabel();
+	}
 
-		gridSize = Mathf.RoundToInt(gridSize);
-		snapPosition.x = Mathf.RoundToInt(transform.position.x / gridSize) * gridSize;
-		snapPosition.z = Mathf.RoundToInt(transform.position.z / gridSize) * gridSize;
-		transform.position = new Vector3(snapPosition.x, 0f, snapPosition.z);
+	void SnapToGrid()
+	{
+		gridPos = waypoint.GetBlockPosition();
+		transform.position = gridPos;
+	}
 
+	void UpdateLabel()
+	{
 		textMesh = GetComponentInChildren<TextMesh>();
-		string XCoordinateLabel = "X: " + snapPosition.x / gridSize;
-		string ZCoordinateLabel = "Z: " + snapPosition.z / gridSize;
+		string XCoordinateLabel = "X: " + gridPos.x / gridSize;
+		string ZCoordinateLabel = "Z: " + gridPos.z / gridSize;
 		textMesh.text = XCoordinateLabel + "\n" + ZCoordinateLabel;
-		gameObject.name = "X:" + snapPosition.x / gridSize + ", " + "Z:" + snapPosition.z / gridSize;
+		gameObject.name = "X:" + gridPos.x / gridSize + ", " + "Z:" + gridPos.z / gridSize;
 	}
 }
