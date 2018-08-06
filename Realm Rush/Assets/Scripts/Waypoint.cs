@@ -24,8 +24,8 @@ public class Waypoint : MonoBehaviour {
 		);
 	}
 
-	public void SetTopColor(GameObject block, Color color)
+	public void SetTopColor(Color color)
 	{
-		block.transform.Find("Top").GetComponent<MeshRenderer>().material.color = color;
+		transform.Find("Top").GetComponent<MeshRenderer>().material.color = color;
 	}
 }
