@@ -8,6 +8,7 @@ public class PathFinder : MonoBehaviour {
 	Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
 	Queue<Waypoint> queue = new Queue<Waypoint>();
 	bool isRunning = true;
+	Waypoint searchCenter;
 
 	Vector2Int[] directions =
 	{
@@ -21,7 +22,8 @@ public class PathFinder : MonoBehaviour {
 	[SerializeField] Waypoint endWaypoint;
 	[SerializeField] Color startColor = Color.green;
 	[SerializeField] Color endColor = Color.red;
-	[SerializeField] Color neighborColor = Color.blue;
+
+	public bool showExploredColors = true;
 
 	Waypoint neighborWaypoint;
 	Waypoint[] waypoints;
@@ -32,6 +34,11 @@ public class PathFinder : MonoBehaviour {
 		ColorStartAndEnd();
 		PathFind();
 		//ExploreNeighbors();
+	}
+
+	public bool GetShowExploredColorsBool()
+	{
+		return showExploredColors;
 	}
 
 	private void LoadBlocks()
@@ -62,40 +69,53 @@ public class PathFinder : MonoBehaviour {
 	{
 		queue.Enqueue(startWaypoint);
 
-		while (queue.Count > 0)
+		while (queue.Count > 0 && isRunning)
 		{
-			var searchCenter = queue.Dequeue();
+			searchCenter = queue.Dequeue();
+			searchCenter.isExplored = true;
 			print("Searching from: " + searchCenter);
-			HaltIfEndFound(searchCenter);
+			HaltIfEndFound();
+			ExploreNeighbors();
 		}
 		print("Finished pathfinding?");
 	}
 
-	private void HaltIfEndFound(Waypoint searchCenter)
+	private void HaltIfEndFound()
 	{
 		if (searchCenter == endWaypoint)
 		{
-			print("Searching from end node, therefore stopping.");
 			isRunning = false;
 		}
 	}
 
 	void ExploreNeighbors()
 	{
+		if (!isRunning) { return; }
 		neighborWaypoint = FindObjectOfType<Waypoint>();
 		neighborWaypoint = startWaypoint;
 		foreach (Vector2Int direction in directions)
 		{
-			Vector2Int neighborPositionVector = neighborWaypoint.GetGridPos() + direction;
+			Vector2Int neighborCoordinates = searchCenter.GetGridPos() + direction;
 			try
 			{
-				grid[neighborPositionVector].SetTopColor(neighborColor);
-				print("Exploring " + neighborPositionVector);
+				QueueNewNeighbors(neighborCoordinates);
 			}
 			catch
 			{
-				Debug.Log("Neighbor doesn't exist on coordinate " + neighborPositionVector);
+				Debug.Log("Neighbor doesn't exist on coordinate " + neighborCoordinates);
 			}
+		}
+	}
+
+	private void QueueNewNeighbors(Vector2Int neighborCoordinates)
+	{
+		Waypoint neighbor = grid[neighborCoordinates];
+		if (neighbor.isExplored || queue.Contains(neighbor)){}	
+		else
+		{
+			queue.Enqueue(neighbor);
+			neighbor.exploreFrom = searchCenter;
+			print("Exploring " + neighborCoordinates);
 		}
 	}
 }
