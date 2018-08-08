@@ -17,16 +17,17 @@ public class Waypoint : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
+		accessExploredColorSettings = new PathFinder();
 		showExploredColors = accessExploredColorSettings.GetShowExploredColorsBool();
-		print(showExploredColors);
 	}
 
 	private void Update()
 	{
-		if (isExplored || showExploredColors == true)
+		if (isExplored && showExploredColors)
 		{
 			SetTopColor(exploredColor);
 		}
+		else {		}
 	}
 
 	public int GetGridSize()

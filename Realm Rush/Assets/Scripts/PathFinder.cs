@@ -23,13 +23,14 @@ public class PathFinder : MonoBehaviour {
 	[SerializeField] Color startColor = Color.green;
 	[SerializeField] Color endColor = Color.red;
 
-	public bool showExploredColors = true;
+	public bool showExploredColors;
 
 	Waypoint neighborWaypoint;
 	Waypoint[] waypoints;
 
 	// Use this for initialization
 	void Start () {
+		print("showExploredColors: " + showExploredColors);
 		LoadBlocks();
 		ColorStartAndEnd();
 		PathFind();
