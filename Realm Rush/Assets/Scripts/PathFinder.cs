@@ -25,8 +25,6 @@ public class PathFinder : MonoBehaviour {
 	[SerializeField] Color endColor = Color.red;
 	[SerializeField] Color exploredColor;
 
-	public bool showExploredColors = true;
-
 	Waypoint neighborWaypoint;
 	Waypoint[] waypoints;
 
@@ -85,16 +83,6 @@ public class PathFinder : MonoBehaviour {
 		{
 			searchCenter = queue.Dequeue();
 			searchCenter.isExplored = true;
-
-			if (showExploredColors)
-			{
-				searchCenter.showExploredColors = true;
-			}
-			else
-			{
-				searchCenter.showExploredColors = false;
-			}
-
 			print("Searching from: " + searchCenter);
 			HaltIfEndFound();
 			ExploreNeighbors();
