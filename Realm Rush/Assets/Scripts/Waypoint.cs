@@ -7,7 +7,7 @@ public class Waypoint : MonoBehaviour {
 	[SerializeField] Color exploredColor;
 
 	public bool isExplored = false;
-	public Waypoint exploreFrom;
+	public Waypoint exploredFrom;
 
 	const int gridSize = 10;
 	Vector2Int gridPos;

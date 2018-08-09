@@ -9,6 +9,7 @@ public class PathFinder : MonoBehaviour {
 	Queue<Waypoint> queue = new Queue<Waypoint>();
 	bool isRunning = true;
 	Waypoint searchCenter;
+	List<Waypoint> path = new List<Waypoint>();
 
 	Vector2Int[] directions =
 	{
@@ -29,12 +30,27 @@ public class PathFinder : MonoBehaviour {
 	Waypoint neighborWaypoint;
 	Waypoint[] waypoints;
 
-	void Start () {
-		print("showExploredColors: " + showExploredColors);
+	public List<Waypoint> GetPath()
+	{
 		LoadBlocks();
 		ColorStartAndEnd();
-		PathFind();
-		//ExploreNeighbors();
+		BreadthFirstSearch();
+		CreatePath();
+		return path;
+	}
+
+	private void CreatePath()
+	{
+		path.Add(endWaypoint);
+		Waypoint previous = endWaypoint.exploredFrom;
+		while (previous != startWaypoint)
+		{
+			path.Add(previous);
+			previous = previous.exploredFrom;
+		}
+
+		path.Add(startWaypoint);
+		path.Reverse();
 	}
 
 	private void LoadBlocks()
@@ -61,7 +77,7 @@ public class PathFinder : MonoBehaviour {
 		endWaypoint.SetTopColor(endColor);
 	}
 
-	void PathFind()
+	void BreadthFirstSearch()
 	{
 		queue.Enqueue(startWaypoint);
 
@@ -103,13 +119,9 @@ public class PathFinder : MonoBehaviour {
 		foreach (Vector2Int direction in directions)
 		{
 			Vector2Int neighborCoordinates = searchCenter.GetGridPos() + direction;
-			try
+			if (grid.ContainsKey(neighborCoordinates))
 			{
 				QueueNewNeighbors(neighborCoordinates);
-			}
-			catch
-			{
-				Debug.Log("Neighbor doesn't exist on coordinate " + neighborCoordinates);
 			}
 		}
 	}
@@ -121,7 +133,7 @@ public class PathFinder : MonoBehaviour {
 		else
 		{
 			queue.Enqueue(neighbor);
-			neighbor.exploreFrom = searchCenter;
+			neighbor.exploredFrom = searchCenter;
 			print("Exploring " + neighborCoordinates);
 		}
 	}
