@@ -11,15 +11,11 @@ public class Waypoint : MonoBehaviour {
 
 	const int gridSize = 10;
 	Vector2Int gridPos;
-	PathFinder accessExploredColorSettings;
-	bool showExploredColors;
+	public bool showExploredColors;
 
 	// Use this for initialization
 	void Start ()
-	{
-		accessExploredColorSettings = new PathFinder();
-		showExploredColors = accessExploredColorSettings.GetShowExploredColorsBool();
-	}
+	{	}
 
 	private void Update()
 	{

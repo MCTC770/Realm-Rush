@@ -22,24 +22,19 @@ public class PathFinder : MonoBehaviour {
 	[SerializeField] Waypoint endWaypoint;
 	[SerializeField] Color startColor = Color.green;
 	[SerializeField] Color endColor = Color.red;
+	[SerializeField] Color exploredColor;
 
-	public bool showExploredColors;
+	public bool showExploredColors = true;
 
 	Waypoint neighborWaypoint;
 	Waypoint[] waypoints;
 
-	// Use this for initialization
 	void Start () {
 		print("showExploredColors: " + showExploredColors);
 		LoadBlocks();
 		ColorStartAndEnd();
 		PathFind();
 		//ExploreNeighbors();
-	}
-
-	public bool GetShowExploredColorsBool()
-	{
-		return showExploredColors;
 	}
 
 	private void LoadBlocks()
@@ -74,10 +69,21 @@ public class PathFinder : MonoBehaviour {
 		{
 			searchCenter = queue.Dequeue();
 			searchCenter.isExplored = true;
+
+			if (showExploredColors)
+			{
+				searchCenter.showExploredColors = true;
+			}
+			else
+			{
+				searchCenter.showExploredColors = false;
+			}
+
 			print("Searching from: " + searchCenter);
 			HaltIfEndFound();
 			ExploreNeighbors();
 		}
+
 		print("Finished pathfinding?");
 	}
 
