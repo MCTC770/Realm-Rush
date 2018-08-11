@@ -11,7 +11,6 @@ public class Waypoint : MonoBehaviour {
 
 	const int gridSize = 10;
 	Vector2Int gridPos;
-	public bool showExploredColors;
 
 	// Use this for initialization
 	void Start ()
@@ -19,7 +18,7 @@ public class Waypoint : MonoBehaviour {
 
 	private void Update()
 	{
-		if (isExplored && showExploredColors)
+		if (isExplored)
 		{
 			SetTopColor(exploredColor);
 		}
