@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHandler : MonoBehaviour {
+public class EnemyDamage: MonoBehaviour {
 
 	[SerializeField] int enemyHP = 3;
 
@@ -13,7 +13,6 @@ public class EnemyHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
 	private void OnParticleCollision(GameObject other)

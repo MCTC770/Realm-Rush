@@ -30,25 +30,19 @@ public class PathFinder : MonoBehaviour {
 
 	public List<Waypoint> GetPath()
 	{
+		if (path.Count == 0)
+		{
+			CalculatePath();
+		}
+		return path;
+	}
+
+	private void CalculatePath()
+	{
 		LoadBlocks();
 		ColorStartAndEnd();
 		BreadthFirstSearch();
 		CreatePath();
-		return path;
-	}
-
-	private void CreatePath()
-	{
-		path.Add(endWaypoint);
-		Waypoint previous = endWaypoint.exploredFrom;
-		while (previous != startWaypoint)
-		{
-			path.Add(previous);
-			previous = previous.exploredFrom;
-		}
-
-		path.Add(startWaypoint);
-		path.Reverse();
 	}
 
 	private void LoadBlocks()
@@ -89,6 +83,20 @@ public class PathFinder : MonoBehaviour {
 		}
 
 		print("Finished pathfinding?");
+	}
+
+	private void CreatePath()
+	{
+		path.Add(endWaypoint);
+		Waypoint previous = endWaypoint.exploredFrom;
+		while (previous != startWaypoint)
+		{
+			path.Add(previous);
+			previous = previous.exploredFrom;
+		}
+
+		path.Add(startWaypoint);
+		path.Reverse();
 	}
 
 	private void HaltIfEndFound()
