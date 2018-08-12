@@ -920,10 +920,6 @@ Prefab:
 
         Z: 0'
       objectReference: {fileID: 0}
-    - target: {fileID: 1273617430034854, guid: b7d62f40b78f27a4292d9d4e00780e73, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7d62f40b78f27a4292d9d4e00780e73, type: 2}
   m_IsPrefabParent: 0
@@ -1612,41 +1608,6 @@ Prefab:
     - target: {fileID: 1183696571541036, guid: f11043c504c000c42843250dec09a9db, type: 2}
       propertyPath: m_Name
       value: X:1, Z:-1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198545229755228400, guid: f11043c504c000c42843250dec09a9db,
-        type: 2}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198545229755228400, guid: f11043c504c000c42843250dec09a9db,
-        type: 2}
-      propertyPath: randomSeed
-      value: -1901594800
-      objectReference: {fileID: 0}
-    - target: {fileID: 198545229755228400, guid: f11043c504c000c42843250dec09a9db,
-        type: 2}
-      propertyPath: CollisionModule.multiplyColliderForceByParticleSize
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198545229755228400, guid: f11043c504c000c42843250dec09a9db,
-        type: 2}
-      propertyPath: CollisionModule.type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198545229755228400, guid: f11043c504c000c42843250dec09a9db,
-        type: 2}
-      propertyPath: CollisionModule.collisionMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198545229755228400, guid: f11043c504c000c42843250dec09a9db,
-        type: 2}
-      propertyPath: CollisionModule.m_Bounce.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198545229755228400, guid: f11043c504c000c42843250dec09a9db,
-        type: 2}
-      propertyPath: CollisionModule.collisionMessages
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f11043c504c000c42843250dec09a9db, type: 2}
@@ -3888,7 +3849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8e95b991bc4b349bc4e0ad3aba2381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 100
+  enemyHP: 10
 --- !u!1001 &1747435563
 Prefab:
   m_ObjectHideFlags: 0
@@ -4359,23 +4320,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 102223764328103828, guid: b7d62f40b78f27a4292d9d4e00780e73,
-        type: 2}
-      propertyPath: m_Text
-      value: 'X: 2
-
-        Z: 0'
-      objectReference: {fileID: 0}
     - target: {fileID: 1755926067324994, guid: b7d62f40b78f27a4292d9d4e00780e73, type: 2}
       propertyPath: m_Name
       value: X:2, Z:0
       objectReference: {fileID: 0}
-    - target: {fileID: 4872388538359006, guid: b7d62f40b78f27a4292d9d4e00780e73, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7d62f40b78f27a4292d9d4e00780e73, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1915818381

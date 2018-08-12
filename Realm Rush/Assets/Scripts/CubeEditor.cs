@@ -34,7 +34,7 @@ public class CubeEditor : MonoBehaviour
 		TextMesh textMesh = GetComponentInChildren<TextMesh>();
 		string XCoordinateLabel = "X: " + waypoint.GetGridPos().x;
 		string ZCoordinateLabel = "Z: " + waypoint.GetGridPos().y;
-		textMesh.text = XCoordinateLabel + "\n" + ZCoordinateLabel;
+		//textMesh.text = XCoordinateLabel + "\n" + ZCoordinateLabel; //disabled to stop errors when coordinate text is disabled
 		gameObject.name = "X:" + waypoint.GetGridPos().x + ", " + "Z:" + waypoint.GetGridPos().y;
 	}
 }
