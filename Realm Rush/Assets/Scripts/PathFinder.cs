@@ -60,7 +60,7 @@ public class PathFinder : MonoBehaviour {
 				grid.Add(gridPos, waypoint);
 			}
 		}
-		print("Loaded " + grid.Count + " blocks");
+		//print("Loaded " + grid.Count + " blocks");
 	}
 
 	private void ColorStartAndEnd()
@@ -77,12 +77,12 @@ public class PathFinder : MonoBehaviour {
 		{
 			searchCenter = queue.Dequeue();
 			searchCenter.isExplored = true;
-			print("Searching from: " + searchCenter);
+			//print("Searching from: " + searchCenter);
 			HaltIfEndFound();
 			ExploreNeighbors();
 		}
 
-		print("Finished pathfinding?");
+		//print("Finished pathfinding?");
 	}
 
 	private void CreatePath()
@@ -130,7 +130,7 @@ public class PathFinder : MonoBehaviour {
 		{
 			queue.Enqueue(neighbor);
 			neighbor.exploredFrom = searchCenter;
-			print("Exploring " + neighborCoordinates);
+			//print("Exploring " + neighborCoordinates);
 		}
 	}
 }
