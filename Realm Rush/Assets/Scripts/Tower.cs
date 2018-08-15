@@ -25,7 +25,7 @@ public class Tower : MonoBehaviour {
 	void Update ()
 	{
 		SetTargetEnemy();
-		enemyIsAlive = GameObject.Find("Enemy");
+		enemyIsAlive = GameObject.Find("Enemy(Clone)");
 
 		if (enemyIsAlive)
 		{
@@ -70,6 +70,7 @@ public class Tower : MonoBehaviour {
 		var emissionTowerLaser = towerLaser.emission;
 
 		timer += Time.deltaTime;
+
 		if (timer > shotFrequency && 
 			enemyIsAlive && 
 			DistanceToEnemy <= attackRange)
