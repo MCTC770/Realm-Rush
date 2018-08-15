@@ -3400,11 +3400,6 @@ Prefab:
       propertyPath: m_Name
       value: X:1, Z:-1
       objectReference: {fileID: 0}
-    - target: {fileID: 114961771968151882, guid: f11043c504c000c42843250dec09a9db,
-        type: 2}
-      propertyPath: rateOverTime
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f11043c504c000c42843250dec09a9db, type: 2}
   m_IsPrefabParent: 0
