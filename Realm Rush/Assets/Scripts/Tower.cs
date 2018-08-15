@@ -12,13 +12,19 @@ public class Tower : MonoBehaviour {
 	[SerializeField] ParticleSystem towerLaser;
 
 	float timer;
+	float laserTime;
 	bool enemyIsAlive;
 	Vector3 towerPosition;
 	Vector3 enemyPosition;
 	float DistanceToEnemy;
 	Transform targetEnemy;
+	AudioSource laserBeam;
+	bool isEmitting = false;
+	bool coroutineStarted = false;
+	bool laserTimerOver1Sec = false;
 
 	private void Start(){
+		laserBeam = GetComponentInChildren<AudioSource>();
 		towerPosition = objectToPan.transform.position;
 	}
 
@@ -75,12 +81,41 @@ public class Tower : MonoBehaviour {
 			enemyIsAlive && 
 			DistanceToEnemy <= attackRange)
 		{
+			laserTime += Time.deltaTime;
+
+			if (laserTime >= rateOverTime)
+			{
+				laserTimerOver1Sec = true;
+			}
+
+			isEmitting = true;
 			emissionTowerLaser.rateOverTime = rateOverTime;
+			if (coroutineStarted == false && laserTimerOver1Sec == true)
+			{
+				StartCoroutine(LaserShotFrequency());
+			}
 			timer = 0f;
 		}
 		else
 		{
+			coroutineStarted = false;
+			laserTimerOver1Sec = false;
+			isEmitting = false;
 			emissionTowerLaser.rateOverTime = 0f;
+			laserBeam.enabled = false;
+		}
+
+		
+	}
+
+	IEnumerator LaserShotFrequency()
+	{
+		coroutineStarted = true;
+		while (isEmitting)
+		{
+			laserBeam.enabled = true;
+			yield return new WaitForSeconds(rateOverTime);
+			laserBeam.enabled = false;
 		}
 	}
 }
