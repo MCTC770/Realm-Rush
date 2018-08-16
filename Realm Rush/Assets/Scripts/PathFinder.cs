@@ -40,7 +40,6 @@ public class PathFinder : MonoBehaviour {
 	private void CalculatePath()
 	{
 		LoadBlocks();
-		ColorStartAndEnd();
 		BreadthFirstSearch();
 		CreatePath();
 	}
@@ -61,12 +60,6 @@ public class PathFinder : MonoBehaviour {
 			}
 		}
 		//print("Loaded " + grid.Count + " blocks");
-	}
-
-	private void ColorStartAndEnd()
-	{
-		startWaypoint.SetTopColor(startColor);
-		endWaypoint.SetTopColor(endColor);
 	}
 
 	void BreadthFirstSearch()

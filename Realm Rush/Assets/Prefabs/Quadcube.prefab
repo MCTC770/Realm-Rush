@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 4085348916523746}
   - component: {fileID: 114820005207252218}
   - component: {fileID: 114769256244468640}
+  - component: {fileID: 65186072334442546}
   m_Layer: 0
   m_Name: Quadcube
   m_TagString: Untagged
@@ -87,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1755926067324994}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20, y: -10, z: 0}
+  m_LocalPosition: {x: 0, y: -10, z: 10}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4872388538359006}
@@ -265,6 +266,18 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65186072334442546
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1755926067324994}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!102 &102223764328103828
 TextMesh:
   serializedVersion: 3
@@ -272,9 +285,9 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1273617430034854}
-  m_Text: 'X: 2
+  m_Text: 'X: 0
 
-    Z: 0'
+    Z: 1'
   m_OffsetZ: 0
   m_CharacterSize: 0.0065
   m_LineSpacing: 1
