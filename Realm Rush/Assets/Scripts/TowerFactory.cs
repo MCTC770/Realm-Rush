@@ -51,7 +51,7 @@ public class TowerFactory : MonoBehaviour {
 
 		oldTower.baseWaypoint = newWaypoint;
 
-		oldTower.transform.position = newWaypoint.transform.position;
+		oldTower.transform.position = new Vector3(newWaypoint.transform.position.x, newWaypoint.transform.position.y + 10f, newWaypoint.transform.position.z);
 
 		towerQueue.Enqueue(oldTower);
 
