@@ -23,7 +23,7 @@ public class Tower : MonoBehaviour {
 	bool coroutineStarted = false;
 	bool laserTimerOverThreshold = false;
 
-	Waypoint baseWaypoint;
+	public Waypoint baseWaypoint;
 
 	private void Start(){
 		laserBeam = GetComponentInChildren<AudioSource>();

@@ -9,25 +9,53 @@ public class TowerFactory : MonoBehaviour {
 
 	int towerCount = 0;
 	Queue<Tower> towerQueue = new Queue<Tower>();
+	GameObject towerParentObject;
+	Vector3 towerVector;
 
 	public void AddTower(Waypoint baseWaypoint)
 	{
-		GameObject towerParentObject = GameObject.Find("Towers");
-		Vector3 towerVector = new Vector3(baseWaypoint.transform.position.x, baseWaypoint.transform.position.y + 10f, baseWaypoint.transform.position.z);
+		towerParentObject = GameObject.Find("Towers");
+		towerVector = new Vector3(baseWaypoint.transform.position.x, baseWaypoint.transform.position.y + 10f, baseWaypoint.transform.position.z);
 		towerCount += 1;
 
 		if (towerCount <= towerLimit)
 		{
-			Tower newTower = Instantiate(towerPrefab, towerVector, Quaternion.identity);
-			newTower.transform.parent = towerParentObject.transform;
-			//towerQueue.Enqueue(newTower);
-			baseWaypoint.isPlaced = true;
+			InstantiateTower(baseWaypoint);
 		}
 		else
 		{
-			//Tower oldTower = towerQueue.Dequeue();
-			print("Tower limit reached " + towerQueue.Count);
-			towerCount -= 1;
+			RequeueTower(baseWaypoint);
 		}
+	}
+
+	private void InstantiateTower(Waypoint baseWaypoint)
+	{
+		Tower newTower = Instantiate(towerPrefab, towerVector, Quaternion.identity);
+		newTower.transform.parent = towerParentObject.transform;
+
+		newTower.baseWaypoint = baseWaypoint;
+		baseWaypoint.isPlacable = false;
+		baseWaypoint.isPlaced = true;
+
+		towerQueue.Enqueue(newTower);
+	}
+
+	private void RequeueTower(Waypoint newWaypoint)
+	{
+		Tower oldTower = towerQueue.Dequeue();
+
+		oldTower.baseWaypoint.isPlacable = true;
+		newWaypoint.isPlacable = false;
+		oldTower.baseWaypoint.isPlaced = false;
+		newWaypoint.isPlaced = true;
+
+		oldTower.baseWaypoint = newWaypoint;
+
+		oldTower.transform.position = newWaypoint.transform.position;
+
+		towerQueue.Enqueue(oldTower);
+
+		print("Tower limit reached");
+		towerCount -= 1;
 	}
 }
