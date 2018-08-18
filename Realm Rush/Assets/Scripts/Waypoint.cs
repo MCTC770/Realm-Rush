@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -51,13 +52,20 @@ public class Waypoint : MonoBehaviour {
 				else
 				{
 					print("can't place at: " + gameObject.name);
+					MoveExistingTower();
 				}
 			}
 		}
 	}
 
+	private void MoveExistingTower()
+	{
+		throw new NotImplementedException();
+	}
+
 	private void InstantiateTower()
 	{
+		print("placeable at: " + gameObject.name);
 		FindObjectOfType<TowerFactory>().AddTower(this);
 	}
 }
