@@ -309,8 +309,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToPan: {fileID: 4588792454525318}
   shotFrequency: 0.01
-  rateOverTime: 0.5
-  attackRange: 40
+  rateOverTime: 1
+  attackRange: 30
   towerLaser: {fileID: 198160069084705694}
 --- !u!198 &198160069084705694
 ParticleSystem:
