@@ -27,7 +27,6 @@ public class EnemyMovement: MonoBehaviour {
 			startPosition = new Vector3(0, -10, 10);
 		}
 
-		print(startPosition + " and " + targetPosition);
 		transform.position = Vector3.Lerp(startPosition, targetPosition, moveStep);
 		transform.rotation = Quaternion.Slerp(startRotation, targetRotation, moveStep * 2);
 		moveStep += Time.deltaTime;

@@ -5,9 +5,10 @@ using UnityEngine;
 public class TowerFactory : MonoBehaviour {
 
 	[SerializeField][Range (1, 10)] int towerLimit = 5;
-	[SerializeField] GameObject towerPrefab;
+	[SerializeField] Tower towerPrefab;
 
 	int towerCount = 0;
+	Queue<Tower> towerQueue = new Queue<Tower>();
 
 	public void AddTower(Waypoint baseWaypoint)
 	{
@@ -17,13 +18,16 @@ public class TowerFactory : MonoBehaviour {
 
 		if (towerCount <= towerLimit)
 		{
-			GameObject tower = Instantiate(towerPrefab, towerVector, Quaternion.identity);
-			tower.transform.parent = towerParentObject.transform;
+			Tower newTower = Instantiate(towerPrefab, towerVector, Quaternion.identity);
+			newTower.transform.parent = towerParentObject.transform;
+			//towerQueue.Enqueue(newTower);
 			baseWaypoint.isPlaced = true;
 		}
 		else
 		{
-			print("Tower limit reached");
+			//Tower oldTower = towerQueue.Dequeue();
+			print("Tower limit reached " + towerQueue.Count);
+			towerCount -= 1;
 		}
 	}
 }

@@ -23,6 +23,8 @@ public class Tower : MonoBehaviour {
 	bool coroutineStarted = false;
 	bool laserTimerOverThreshold = false;
 
+	Waypoint baseWaypoint;
+
 	private void Start(){
 		laserBeam = GetComponentInChildren<AudioSource>();
 		towerPosition = objectToPan.transform.position;
