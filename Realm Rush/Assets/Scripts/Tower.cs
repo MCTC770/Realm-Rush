@@ -7,7 +7,7 @@ public class Tower : MonoBehaviour {
 
 	[SerializeField] Transform objectToPan;
 	[SerializeField] [Range (0f, 10f)] float shotFrequency = 3f;
-	[SerializeField] [Range(0f, 10000f)] float rateOverTime = 1f;
+	[SerializeField] [Range(0f, 5f)] float rateOverTime = 1f;
 	[SerializeField] [Range(0f, 100f)] float attackRange = 30f;
 	[SerializeField] ParticleSystem towerLaser;
 
@@ -21,7 +21,7 @@ public class Tower : MonoBehaviour {
 	AudioSource laserBeam;
 	bool isEmitting = false;
 	bool coroutineStarted = false;
-	bool laserTimerOver1Sec = false;
+	bool laserTimerOverThreshold = false;
 
 	private void Start(){
 		laserBeam = GetComponentInChildren<AudioSource>();
@@ -83,14 +83,14 @@ public class Tower : MonoBehaviour {
 		{
 			laserTime += Time.deltaTime;
 
-			if (laserTime >= rateOverTime)
+			if (laserTime >= 1 / rateOverTime)
 			{
-				laserTimerOver1Sec = true;
+				laserTimerOverThreshold = true;
 			}
 
 			isEmitting = true;
 			emissionTowerLaser.rateOverTime = rateOverTime;
-			if (coroutineStarted == false && laserTimerOver1Sec == true)
+			if (coroutineStarted == false && laserTimerOverThreshold == true)
 			{
 				StartCoroutine(LaserShotFrequency());
 			}
@@ -99,7 +99,7 @@ public class Tower : MonoBehaviour {
 		else
 		{
 			coroutineStarted = false;
-			laserTimerOver1Sec = false;
+			laserTimerOverThreshold = false;
 			isEmitting = false;
 			emissionTowerLaser.rateOverTime = 0f;
 			laserBeam.enabled = false;
@@ -114,7 +114,7 @@ public class Tower : MonoBehaviour {
 		while (isEmitting)
 		{
 			laserBeam.enabled = true;
-			yield return new WaitForSeconds(rateOverTime);
+			yield return new WaitForSeconds(1 / rateOverTime);
 			laserBeam.enabled = false;
 		}
 	}
