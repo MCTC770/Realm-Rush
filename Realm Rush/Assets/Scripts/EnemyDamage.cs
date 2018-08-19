@@ -7,6 +7,7 @@ public class EnemyDamage: MonoBehaviour {
 	[SerializeField] int enemyHP = 3;
 	[SerializeField] ParticleSystem hitParticlesPrefab;
 	[SerializeField] ParticleSystem deathParticlePrefab;
+	[SerializeField] ParticleSystem hitBaseDeathPrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -22,17 +23,26 @@ public class EnemyDamage: MonoBehaviour {
 		hitParticlesPrefab.Play();
 		enemyHP -= 1;
 
-		EnemyDeath();
+		EnemyDeath(false);
 	}
 
-	private void EnemyDeath()
+	public void EnemyDeath(bool reachGoal)
 	{
-		if (enemyHP <= 0)
+		if (enemyHP <= 0 || reachGoal)
 		{
 			Vector3 particleExplosionPosition = new Vector3(transform.position.x, transform.position.y + 9.309999f, transform.position.z);
 			GameObject deathParticleCollector = GameObject.Find("Death Particles");
+			ParticleSystem deathParticle;
 
-			ParticleSystem deathParticle = Instantiate(deathParticlePrefab, particleExplosionPosition, Quaternion.identity);
+			if (reachGoal == false)
+			{
+				deathParticle = Instantiate(deathParticlePrefab, particleExplosionPosition, Quaternion.identity);
+			}
+			else
+			{
+				deathParticle = Instantiate(hitBaseDeathPrefab, particleExplosionPosition, Quaternion.identity);
+			}
+
 			deathParticle.transform.parent = deathParticleCollector.transform;
 
 			Destroy(deathParticle.gameObject, deathParticle.main.duration);

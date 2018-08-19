@@ -405,6 +405,8 @@ MonoBehaviour:
   hitParticlesPrefab: {fileID: 198262556314012940}
   deathParticlePrefab: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0,
     type: 2}
+  hitBaseDeathPrefab: {fileID: 198047793055362530, guid: fdbd307a34447c545a7879f4f934f4df,
+    type: 2}
 --- !u!114 &114980258655699432
 MonoBehaviour:
   m_ObjectHideFlags: 1

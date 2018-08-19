@@ -55,7 +55,6 @@ public class TowerFactory : MonoBehaviour {
 
 		towerQueue.Enqueue(oldTower);
 
-		print("Tower limit reached");
 		towerCount -= 1;
 	}
 }

@@ -6,12 +6,14 @@ public class EnemyMovement: MonoBehaviour {
 
 	[SerializeField][Range (0.1f, 10f)] float timeTicks = 1f;
 	[SerializeField][Range(-20f, 20f)] float offset = 10f;
+
 	List<Waypoint> path;
 	float moveStep = 0f;
 	Vector3 startPosition;
 	Vector3 targetPosition;
 	Quaternion startRotation;
 	Quaternion targetRotation;
+	PathFinder pathFinder;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +26,7 @@ public class EnemyMovement: MonoBehaviour {
 	{
 		if (startPosition == new Vector3(0,0,0))
 		{
-			startPosition = new Vector3(0, -10, 10);
+			startPosition = new Vector3(20, -10, -10);
 		}
 
 		transform.position = Vector3.Lerp(startPosition, targetPosition, moveStep);
@@ -50,6 +52,8 @@ public class EnemyMovement: MonoBehaviour {
 			targetRotation = Quaternion.LookRotation((targetPosition - transform.position), Vector3.up);
 			yield return new WaitForSeconds(timeTicks);
 		}
-		print("Ending patrol");
+
+		EnemyDamage enemyDamage = GetComponent<EnemyDamage>();
+		enemyDamage.EnemyDeath(true);
 	}
 }
