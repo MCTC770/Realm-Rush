@@ -3048,7 +3048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b80a1f9a963789f4e957a5d1e019132e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 20
+  playerHealth: 10
 --- !u!23 &1290863693
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3292,7 +3292,6 @@ MonoBehaviour:
   enemyDeathScore: 10
   enemyDestinationReachedPanelty: 10
   scoreNumber: 0
-  playerHealth: 0
 --- !u!4 &1360155991 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4085348916523746, guid: b7d62f40b78f27a4292d9d4e00780e73,

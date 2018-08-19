@@ -12,18 +12,18 @@ public class UITextDisplay : MonoBehaviour {
 	public int enemyDeathScore = 10;
 	public int enemyDestinationReachedPanelty = 10;
 	public int scoreNumber = 0;
-	public int playerHealth = 10;
+	PlayerHealth playerHealthClass;
 
 	// Use this for initialization
 	void Start () {
-		
+		playerHealthClass = FindObjectOfType<PlayerHealth>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		print(scoreNumber + " " + playerHealth);
+		print(scoreNumber + " " + playerHealthClass.playerHealth);
 		scoreUI.text = scoreNumber.ToString();
-		healthUI.text = playerHealth.ToString();
+		healthUI.text = playerHealthClass.playerHealth.ToString();
 
 	}
 }
