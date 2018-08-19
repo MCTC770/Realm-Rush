@@ -8,11 +8,17 @@ public class EnemyDamage: MonoBehaviour {
 	[SerializeField] ParticleSystem hitParticlesPrefab;
 	[SerializeField] ParticleSystem deathParticlePrefab;
 	[SerializeField] ParticleSystem hitBaseDeathPrefab;
+	[SerializeField] AudioClip enemyHitSound;
+	[SerializeField] AudioClip enemyDeathSound;
+	[SerializeField] AudioClip enemyReachBaseSound;
 
+	AudioSource enemySounds;
 	UITextDisplay uiText;
 
 	// Use this for initialization
 	void Start () {
+		GameObject enemySoundsObject = GameObject.Find("EnemySounds");
+		enemySounds = enemySoundsObject.GetComponent<AudioSource>();
 		uiText = FindObjectOfType<UITextDisplay>();
 	}
 	
@@ -23,6 +29,7 @@ public class EnemyDamage: MonoBehaviour {
 	private void OnParticleCollision(GameObject other)
 	{
 		hitParticlesPrefab.Play();
+		enemySounds.PlayOneShot(enemyHitSound);
 		enemyHP -= 1;
 
 		EnemyDeath(false);
@@ -39,11 +46,13 @@ public class EnemyDamage: MonoBehaviour {
 			if (reachGoal == false)
 			{
 				deathParticle = Instantiate(deathParticlePrefab, particleExplosionPosition, Quaternion.identity);
+				enemySounds.PlayOneShot(enemyDeathSound);
 			}
 			else
 			{
 				deathParticle = Instantiate(hitBaseDeathPrefab, particleExplosionPosition, Quaternion.identity);
 				uiText.scoreNumber -= uiText.enemyDestinationReachedPanelty;
+				enemySounds.PlayOneShot(enemyReachBaseSound);
 			}
 
 			if(enemyHP <= 0)

@@ -407,6 +407,9 @@ MonoBehaviour:
     type: 2}
   hitBaseDeathPrefab: {fileID: 198047793055362530, guid: fdbd307a34447c545a7879f4f934f4df,
     type: 2}
+  enemyHitSound: {fileID: 8300000, guid: b9ddd320d4eaf034f83cc240c2b4d2cf, type: 3}
+  enemyDeathSound: {fileID: 8300000, guid: 6584af0859d3eac45b7ad1916515d9a4, type: 3}
+  enemyReachBaseSound: {fileID: 8300000, guid: fadf399b6ff18bb43abe484573c8649a, type: 3}
 --- !u!114 &114980258655699432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -420,6 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeTicks: 1
   offset: 10
+  enemyDamageOnHitBase: 1
 --- !u!198 &198051237521758964
 ParticleSystem:
   m_ObjectHideFlags: 1

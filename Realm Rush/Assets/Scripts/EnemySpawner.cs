@@ -6,6 +6,8 @@ public class EnemySpawner : MonoBehaviour {
 
 	[SerializeField] [Range(0f, 10f)] float secondsBetweenSpawns = 3f;
 	[SerializeField] GameObject enemyToSpawn;
+	[SerializeField] AudioSource enemySounds;
+	[SerializeField] AudioClip enemySpawnSound;
 
 	UITextDisplay uiText;
 
@@ -20,7 +22,7 @@ public class EnemySpawner : MonoBehaviour {
 		while (true)
 		{
 			GameObject enemySpawned = Instantiate(enemyToSpawn, transform.position, Quaternion.identity);
-			enemySpawned.transform.parent = this.transform;
+			enemySounds.PlayOneShot(enemySpawnSound);
 			uiText.scoreNumber += uiText.enemySpawnScore;
 			yield return new WaitForSeconds(secondsBetweenSpawns);
 		}
