@@ -9,9 +9,11 @@ public class EnemyDamage: MonoBehaviour {
 	[SerializeField] ParticleSystem deathParticlePrefab;
 	[SerializeField] ParticleSystem hitBaseDeathPrefab;
 
+	UITextDisplay uiText;
+
 	// Use this for initialization
 	void Start () {
-		
+		uiText = FindObjectOfType<UITextDisplay>();
 	}
 	
 	// Update is called once per frame
@@ -41,6 +43,12 @@ public class EnemyDamage: MonoBehaviour {
 			else
 			{
 				deathParticle = Instantiate(hitBaseDeathPrefab, particleExplosionPosition, Quaternion.identity);
+				uiText.scoreNumber -= uiText.enemyDestinationReachedPanelty;
+			}
+
+			if(enemyHP <= 0)
+			{
+				uiText.scoreNumber += uiText.enemyDeathScore;
 			}
 
 			deathParticle.transform.parent = deathParticleCollector.transform;
