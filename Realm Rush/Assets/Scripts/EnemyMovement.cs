@@ -6,6 +6,7 @@ public class EnemyMovement: MonoBehaviour {
 
 	[SerializeField][Range (0.1f, 10f)] float timeTicks = 1f;
 	[SerializeField][Range(-20f, 20f)] float offset = 10f;
+	[SerializeField][Range (1, 3)] int enemyDamageOnHitBase = 1;
 
 	List<Waypoint> path;
 	float moveStep = 0f;
@@ -55,5 +56,7 @@ public class EnemyMovement: MonoBehaviour {
 
 		EnemyDamage enemyDamage = GetComponent<EnemyDamage>();
 		enemyDamage.EnemyDeath(true);
+		PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
+		playerHealth.playerHealth -= enemyDamageOnHitBase;
 	}
 }
