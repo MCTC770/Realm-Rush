@@ -22,6 +22,8 @@ public class EnemySpawner : MonoBehaviour {
 		while (true)
 		{
 			GameObject enemySpawned = Instantiate(enemyToSpawn, transform.position, Quaternion.identity);
+			GameObject enemyParent = GameObject.Find("Enemies");
+			enemySpawned.transform.parent = enemyParent.transform;
 			enemySounds.PlayOneShot(enemySpawnSound);
 			uiText.scoreNumber += uiText.enemySpawnScore;
 			yield return new WaitForSeconds(secondsBetweenSpawns);
