@@ -401,7 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8e95b991bc4b349bc4e0ad3aba2381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 3
+  enemyHP: 12
   hitParticlesPrefab: {fileID: 198262556314012940}
   deathParticlePrefab: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0,
     type: 2}
