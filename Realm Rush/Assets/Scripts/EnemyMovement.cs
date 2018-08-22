@@ -15,11 +15,14 @@ public class EnemyMovement: MonoBehaviour {
 	Quaternion startRotation;
 	Quaternion targetRotation;
 	PathFinder pathFinder;
+	Rigidbody enemyRigidbody;
+
 
 	// Use this for initialization
 	void Start () {
-		PathFinder pathfinder = FindObjectOfType<PathFinder>();
-		path = pathfinder.GetPath();
+		enemyRigidbody = GetComponent<Rigidbody>();
+		pathFinder = FindObjectOfType<PathFinder>();
+		path = pathFinder.GetPath();
 		StartCoroutine(FollowPath(path));
 	}
 

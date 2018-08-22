@@ -54,6 +54,7 @@ public class TowerFactory : MonoBehaviour {
 		oldTower.transform.position = new Vector3(newWaypoint.transform.position.x, newWaypoint.transform.position.y + 10f, newWaypoint.transform.position.z);
 
 		towerQueue.Enqueue(oldTower);
+		oldTower.isReplaced = true;
 
 		towerCount -= 1;
 	}

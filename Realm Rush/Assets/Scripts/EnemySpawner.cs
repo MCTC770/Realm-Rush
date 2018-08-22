@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour {
 	{
 		while (true)
 		{
-			GameObject enemySpawned = Instantiate(enemyToSpawn, transform.position, Quaternion.identity);
+			GameObject enemySpawned = Instantiate(enemyToSpawn, new Vector3(20,-10,-10), Quaternion.identity);
 			GameObject enemyParent = GameObject.Find("Enemies");
 			enemySpawned.transform.parent = enemyParent.transform;
 			enemySounds.PlayOneShot(enemySpawnSound);

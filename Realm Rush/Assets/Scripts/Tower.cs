@@ -22,6 +22,7 @@ public class Tower : MonoBehaviour {
 	bool isEmitting = false;
 	bool coroutineStarted = false;
 	bool laserTimerOverThreshold = false;
+	public bool isReplaced = false;
 
 	public Waypoint baseWaypoint;
 
@@ -32,6 +33,11 @@ public class Tower : MonoBehaviour {
 
 	void Update ()
 	{
+		if (isReplaced == true)
+		{
+			towerPosition = objectToPan.transform.position;
+			isReplaced = false;
+		}
 		SetTargetEnemy();
 		enemyIsAlive = GameObject.Find("Enemy(Clone)");
 

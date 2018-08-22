@@ -21,7 +21,6 @@ public class UITextDisplay : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		print(scoreNumber + " " + playerHealthClass.playerHealth);
 		scoreUI.text = scoreNumber.ToString();
 		healthUI.text = playerHealthClass.playerHealth.ToString();
 
